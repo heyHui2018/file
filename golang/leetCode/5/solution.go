@@ -5,9 +5,8 @@ import (
 )
 
 /*
-第一次时的思路：(未完成)
-利用回文字的中间为xx或xyx的特性逐一遍历
-无法解决"babadada"的情况
+思路一：(未完成)
+利用回文字的中间为xx或xyx的特性逐一遍历,利用map存储字符上一次出现的位置(无法解决"babadada"中最长的是adada的情况)
 if len(s) < 2 {
 		return s
 	}
@@ -44,9 +43,12 @@ if len(s) < 2 {
 	return strings.Join(result, "")
 */
 
-// faster 100% less 100%
-func longestPalindrome(s string) string { // 思路:逐一遍历s,若下一位与当前位的值相同时,将下一位包括进此次回文,直至下一位的值不同,
-	// 随后对这一段相同字符组成的串的首位进行逐一比较来确定前后边界
+/*
+思路二:
+逐一遍历s,若下一位与当前位的值相同,将下一位包括进此次回文,直至下一位的值不同,随后对这一段相同字符组成的串的首位进行逐一比较来确定前后边界
+*/
+
+func longestPalindrome(s string) string { // faster 100% less 100%
 	if len(s) < 2 { // 肯定是回文，直接返回
 		return s
 	}
@@ -72,17 +74,15 @@ func longestPalindrome(s string) string { // 思路:逐一遍历s,若下一位�
 		}
 
 		b, e := i, i
-		for e < len(s)-1 && s[e+1] == s[e] { // 此循环用来检测一串相同字符串
+		for e < len(s)-1 && s[e+1] == s[e] { // 此循环用来检测一串相同字符串,循环结束后s[b:e+1]是一串相同的字符串
 			e++
-			// 循环结束后，s[b:e+1]是一串相同的字符串
 		}
 
 		// 下一个回文的`正中间段`的首字符只会是s[e+1]
 		i = e + 1
-		for e < len(s)-1 && b > 0 && s[e+1] == s[b-1] { // s[e+1]为相同字符串的下一位,s[b-1]为相同字符串的上一位
+		for e < len(s)-1 && b > 0 && s[e+1] == s[b-1] { // s[e+1]为相同字符串的下一位,s[b-1]为相同字符串的上一位,循环结束后s[b:e+1]是这次能找到的最长回文
 			e++
 			b--
-			// 循环结束后，s[b:e+1]是这次能找到的最长回文。
 		}
 
 		newLen := e + 1 - b

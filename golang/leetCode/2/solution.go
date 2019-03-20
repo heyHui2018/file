@@ -10,8 +10,8 @@ type ListNode struct {
 }
 
 /*
-第一次独立完成时的思路：
-l1、l2直接遍历直接相加,所有遍历放入l3输出
+思路一：
+l1、l2遍历直接相加后放入l3,有进位时放入temp,最后遍历l3输出
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	var s3 []int
 	var temp, flag int

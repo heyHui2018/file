@@ -5,7 +5,7 @@ import (
 )
 
 /*
-第一次时的思路：
+思路一：
 转换成string,逆序输出
 sign := 1
 	// 去0
@@ -29,6 +29,10 @@ sign := 1
 	return result * sign
 */
 
+/*
+思路二：
+通过 %10 和 *10+余数 来代替转string
+*/
 func reverse(x int) int { // faster 100% less 100%
 	sign := 1
 

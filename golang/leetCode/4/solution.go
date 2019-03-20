@@ -5,7 +5,7 @@ import (
 )
 
 /*
-第一次时的思路：
+思路一：
 判断总长是奇还是偶来确定中位数(数组长度为奇数时,中间那个;为偶数时,中间两个的平均值),随后遍历nums1、nums2来获取中位数
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {faster 96.34% less 54%
 	al := len(nums1)

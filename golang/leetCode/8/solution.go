@@ -7,10 +7,14 @@ import (
 )
 
 /*
-第一次时的思路：(未完成)
+思路一：(未完成)
 无思路
 */
 
+/*
+思路二：
+通过 abs = abs*10 + int(b-'0') 将str转成int
+*/
 func myAtoi(str string) int { // faster 100% less 100%
 	// 去除前后空格
 	str = strings.TrimSpace(str)

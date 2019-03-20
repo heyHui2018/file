@@ -1,4 +1,4 @@
-##Palindrome Number
+##Palindrome Number(回文数)
 
 ###题目
 Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
