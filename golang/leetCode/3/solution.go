@@ -6,8 +6,7 @@ import (
 
 /*
 思路一：(未完成,需加计算i1-1-j1的逻辑)
-遍历s并放入map,当发现重复时(此时index=i1,上次出现为i0,上次重复时后一次的index为j1),计算i1-i0,计算i1-1-j1,与现有的长度作比较,较长的作为放入result,最终输出result
-需注意：
+遍历s并放入map,当发现重复时(此时index=i1,上次出现为i0,上次重复时后一次的index为j1),计算i1-i0,计算i1-1-j1,与现有的长度作比较,较长的放入result,最终输出result
 if len(s) == 0 {
 		return 0
 	}
