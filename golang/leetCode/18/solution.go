@@ -7,25 +7,28 @@ import (
 
 /*
 思路一：
-
+比3Sum多一层循环
 */
 
-func fourSum(nums []int, target int) [][]int { // faster 100% less 5.06%
+func fourSum(nums []int, target int) [][]int { // faster 93.19% less 79.93%
 	sort.Ints(nums)
 	res := [][]int{}
 
-	for i := 0; i < len(nums)-1; i++ {
-		for j := 1; j < len(nums); j++ {
-			if j > 1 && nums[j] == nums[j-1] {
+	for i := 0; i < len(nums)-3; i++ { // 0到len(nums)-3
+		if i > 0 && nums[i] == nums[i-1] {
+			continue
+		}
+		for j := i + 1; j < len(nums)-2; j++ { // i+1到len(nums)-2
+			if j > i+1 && nums[j] == nums[j-1] {
 				continue
 			}
 			l, r := j+1, len(nums)-1
 			for l < r {
 				s := nums[i] + nums[j] + nums[l] + nums[r]
 				switch {
-				case s < 0:
+				case s < target:
 					l++
-				case s > 0:
+				case s > target:
 					r--
 				default:
 					res = append(res, []int{nums[i], nums[j], nums[l], nums[r]})
@@ -55,7 +58,7 @@ func next(nums []int, l, r int) (int, int) {
 }
 
 func main() {
-	nums := []int{1, 0, -1, 0, -2, 2}
+	nums := []int{-3, -2, -1, 0, 0, 1, 2, 3}
 	target := 0
 	result := fourSum(nums, target)
 	fmt.Println(result)

@@ -15,4 +15,4 @@ hystrix.command.default.circuitBreaker.forceClosed=true
 ###5、反射获取不到父类中的私有变量
 ###6、ResultVO<T>中的T即泛型，在不同的方法中设置成不同的类型即可实现不同的返回
 ###7、通过feign进行微服务调用设置fallback时，需implements FallbackFactory<T>（此处的T即为通过feign进行微服务调用的类），并重写create方法来输出相关日志
- 
+###8、hscan命令中参数count指的是扫描的数量，而非想要匹配的数量
