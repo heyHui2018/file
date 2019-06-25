@@ -6,7 +6,7 @@ import (
 
 /*
 思路一：
-
+计数，是偶数位时，与前一位互换。
 */
 
 type ListNode struct {
@@ -14,12 +14,23 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func swapPairs(head *ListNode) *ListNode {
-
+func swapPairs(head *ListNode) *ListNode { // faster 100.00% less 67.41%
+	if head == nil || head.Next == nil {
+		return head
+	}
+	copy := head
+	count := 1
+	for copy.Next != nil {
+		count++
+		if count%2 == 0 {
+			copy.Val, copy.Next.Val = copy.Next.Val, copy.Val
+		}
+		copy = copy.Next
+	}
+	return head
 }
 
 func main() {
-	var list []*ListNode
 	l1 := new(ListNode)
 	l1.Val = 1
 	l1.Next = new(ListNode)
