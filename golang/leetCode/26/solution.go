@@ -6,82 +6,48 @@ import (
 
 /*
 思路一：
-需反转k个节点。将各节点指针放入list，当满足k个节点的数量时（count%k == 0），将这一组进行反转（第一个和第k个，第二个和第k-1个。。。，用for循环），需注意当head的长度是k的倍数时，
-因最后一个节点的.next==nil，故需在最后再次手动加入list并执行一次反转
-func reverseKGroup(head *ListNode, k int) *ListNode { // faster 25.64% less 6.87%
-	if head == nil || head.Next == nil || k == 1 {
-		return head
-	}
-	copy := head
-	count := 1
-	var list []*ListNode
-	for copy.Next != nil {
-		list = append(list, copy)
-		if count%k == 0 {
-			for i := 0; i < k/2; i++ {
-				list[len(list)-1-i].Val, list[len(list)-k+i].Val = list[len(list)-k+i].Val, list[len(list)-1-i].Val
-			}
-		}
-		count++
-		copy = copy.Next
-	}
-	if len(list)%k == 0 {
-		list = append(list, copy)
-		for i := 0; i < k/2; i++ {
-			list[len(list)-1-i].Val, list[len(list)-k+i].Val = list[len(list)-k+i].Val, list[len(list)-1-i].Val
+仅允许在原数组上进行排序,空间复杂度要求O(1),故先遍历原数组,用index记录满足条件的数字个数,循环中判断此次数字是否之前已经出现过,若没有则将此数字与第index个交换,最终返回index.
+func removeDuplicates(nums []int) int { // faster 5.33% less 26.08%
+	index := 0
+	for k := range nums {
+		fmt.Println("1111111111111 ", nums[:index], nums[k], index, nums[index])
+		if !contain(nums[:index], nums[k]) {
+			nums[index], nums[k] = nums[k], nums[index]
+			index++
 		}
 	}
-	return head
+	return index
+}
+
+func contain(list []int, num int) bool {
+	for _, v := range list {
+		if v == num {
+			return true
+		}
+	}
+	return false
 }
 */
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+/*
+思路二：
+用left、right两个变量来代替思路一中的contains函数以避免时间浪费.
+*/
 
-// 翻转k个节点,并非第1个和第k个互换
-func reverseKGroup(head *ListNode, k int) *ListNode { // faster 25.64% less 6.87%
-	if head == nil || head.Next == nil || k == 1 {
-		return head
-	}
-	copy := head
-	count := 1
-	var list []*ListNode
-	for copy.Next != nil {
-		list = append(list, copy)
-		if count%k == 0 {
-			for i := 0; i < k/2; i++ {
-				list[len(list)-1-i].Val, list[len(list)-k+i].Val = list[len(list)-k+i].Val, list[len(list)-1-i].Val
-			}
+func removeDuplicates(nums []int) int { // faster 98.87% less 75.41%
+	left, right, size := 0, 1, len(nums)
+	for ; right < size; right++ {
+		if nums[left] == nums[right] {
+			continue
 		}
-		count++
-		copy = copy.Next
+		left++
+		nums[left], nums[right] = nums[right], nums[left]
 	}
-	list = append(list, copy)
-	if len(list)%k == 0 {
-		for i := 0; i < k/2; i++ {
-			list[len(list)-1-i].Val, list[len(list)-k+i].Val = list[len(list)-k+i].Val, list[len(list)-1-i].Val
-		}
-	}
-	return head
+	return left + 1
 }
 
 func main() {
-	l1 := new(ListNode)
-	l1.Val = 1
-	l1.Next = new(ListNode)
-	l1.Next.Val = 2
-	// l1.Next.Next = new(ListNode)
-	// l1.Next.Next.Val = 3
-	// l1.Next.Next.Next = new(ListNode)
-	// l1.Next.Next.Next.Val = 4
-	// l1.Next.Next.Next.Next = new(ListNode)
-	// l1.Next.Next.Next.Next.Val = 5
-	result := reverseKGroup(l1, 2)
-	for (result.Next != nil) {
-		fmt.Println(result.Val)
-		result = result.Next
-	}
-	fmt.Println(result.Val)
+	nums := []int{0, 0, 0, 1, 1, 1, 2, 2, 3, 3, 4}
+	result := removeDuplicates(nums)
+	fmt.Println(result)
 }
