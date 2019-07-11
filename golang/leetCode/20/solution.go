@@ -59,7 +59,6 @@ func isValid(s string) bool { // faster 100% less 83.97%
 			}
 		}
 	}
-
 	return top == 0
 }
 
