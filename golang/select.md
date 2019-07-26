@@ -5,7 +5,7 @@ func main() {
     timeout := time.After(5 * time.Second)
     for {
         select {
-        case s := <-c:
+        case s := <-ch:
             fmt.Println(s)
         case <-timeout:
             fmt.Println("timeout!")
