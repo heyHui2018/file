@@ -16,7 +16,7 @@ docker run -p 3306:3306 --name HRJ_mysql -v $PWD/conf/my.cnf:/etc/mysql/my.cnf -
 -d 后台运行
 ```
 
-###4、连接本地mysql
+####4、连接本地mysql
 docker run -it --link HRJ_mysql --rm mysql  mysql -h HRJ_mysql -uroot -p"123456"
 docker run -it --rm mysql mysql -h 172.17.0.4 -uroot -p"123456"
 
