@@ -28,3 +28,9 @@ ssh -T git@github.com
 返回 Hi heyHui2018! You've successfully authenticated, but GitHub does not provide shell access.
 ssh -T git@git.moretv.cn
 返回 Welcome to GitLab, XXX!
+####5、设置全局账户
+git config --global user.name "Your Name Here"
+git config --global user.email your@email.com
+####6、设置局部账户
+git config user.name "Your Name Here"
+git config user.email your@email.com
