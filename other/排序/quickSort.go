@@ -4,11 +4,13 @@ import (
 	"fmt"
 )
 
+// 双边扫描
+
 var array = []int{10, 6, 1, 2, 7, 9, 3, 4, 5, 8}
 
 func main() {
 	fmt.Println("排序前:", array)
-	quickSort(0, len(array) - 1)
+	quickSort(0, len(array)-1)
 	fmt.Println("排序后:", array)
 }
 
@@ -45,6 +47,6 @@ func quickSort(left, right int) {
 	array[left] = array[i]
 	array[i] = temp
 	fmt.Println("排序中:", array)
-	quickSort(left, i - 1)
-	quickSort(i + 1, right)
+	quickSort(left, i-1)
+	quickSort(i+1, right)
 }
