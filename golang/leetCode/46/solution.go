@@ -35,7 +35,7 @@ func p(base [][]int, num int) [][]int {
 	result := make([][]int, 0)
 	for i := range base {
 		for j := range base[i] {
-			// 此处不可食用temp:=base[i][:j],因在temp = append(temp, num)后,会使base[i]也改变
+			// 此处不可使用temp:=base[i][:j],因在temp = append(temp, num)后,会使base[i]也改变
 			var temp []int
 			temp = append(temp, base[i][:j]...)
 			temp = append(temp, num)

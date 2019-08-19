@@ -40,7 +40,7 @@ func p(base [][]int, num int, resultMap map[string]int) [][]int {
 			if num == base[i][j] {
 				continue
 			}
-			// 此处不可食用temp:=base[i][:j],因在temp = append(temp, num)后,会使base[i]也改变
+			// 此处不可使用temp:=base[i][:j],因在temp = append(temp, num)后,会使base[i]也改变
 			var temp []int
 			temp = append(temp, base[i][:j]...)
 			temp = append(temp, num)
